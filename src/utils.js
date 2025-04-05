@@ -134,15 +134,22 @@ export const addFailedCount = (engine) => {
   const failed = lastFailedCount + 1
   engine.setVariable(constant.failedCount, failed)
   engine.setVariable(constant.perfectCount, 0)
+ 
   if (setGameFailed) setGameFailed(failed)
   if (failed >= 3) {
+    
+ 
     engine.pauseAudio('bgm')
     engine.playAudio('game-over')
     engine.setVariable(constant.gameStartNow, false)
+    //TODO: save score TD01
+
   }
 }
 
 export const addScore = (engine, isPerfect) => {
+
+  
   const { setGameScore, successScore, perfectScore } = engine.getVariable(constant.gameUserOption)
   const lastPerfectCount = engine.getVariable(constant.perfectCount, 0)
   const lastGameScore = engine.getVariable(constant.gameScore)
@@ -150,6 +157,7 @@ export const addScore = (engine, isPerfect) => {
   const score = lastGameScore + (successScore || 25) + ((perfectScore || 25) * perfect)
   engine.setVariable(constant.gameScore, score)
   engine.setVariable(constant.perfectCount, perfect)
+
   if (setGameScore) setGameScore(score)
 }
 

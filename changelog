@@ -1,0 +1,23 @@
+-Store mechanics
+    +Saving total score
+    +Using total score as money
+    +Displaying total score in Store
+    +Updating store labels 
+    +Displaying messages for store actions ("You dont have enogh money etc.")
+    +Graying out unavaible for purchase blocks
+    +Possibility to equip already purchased blocks
+-Blocks mechanics
+    +Changing block sprite
+    +Changing background sprite and gradient (gradient can be changedd in background.js)
+    +Added rain to blue block, which fades out with player height
+    -Different soundtrack for every block
+-Sprite changes
+    +All new sprites are just placeholders
+    +New sprites included:
+        -bluebackground - background(starting floor) used while playing with blue block
+        -greenbackground - background(starting floor) used while playing with blue block
+        -blueblock-rope - blue block with rope attached
+        -greenblock-rope - green block with rope attached
+        -raindrop - sprite used to generate rain
+        -greenbgm - background music for green block
+        -bluebgm - background music for blue block

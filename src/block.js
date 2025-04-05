@@ -142,6 +142,7 @@ export const blockAction = (instance, engine, time) => {
             || i.x < -cheatWidth) {
             engine.setVariable(constant.hardMode, true)
           }
+     
           if (collision === 5) {
             instance.perfect = true
             addScore(engine, true)
@@ -204,7 +205,9 @@ export const blockAction = (instance, engine, time) => {
 }
 
 const drawSwingBlock = (instance, engine) => {
-  const bl = engine.getImg('blockRope')
+  const bl = engine.getImg(engine.getVariable(constant.blockName)+'Rope')
+
+
   engine.ctx.drawImage(
     bl, instance.weightX - instance.calWidth
     , instance.weightY
@@ -216,7 +219,7 @@ const drawSwingBlock = (instance, engine) => {
 
 const drawBlock = (instance, engine) => {
   const { perfect } = instance
-  const bl = engine.getImg(perfect ? 'block-perfect' : 'block')
+  const bl = engine.getImg(perfect ? 'block-perfect' : engine.getVariable(constant.blockName))
   engine.ctx.drawImage(bl, instance.x, instance.y, instance.width, instance.height)
 }
 
@@ -231,6 +234,7 @@ const drawRotatedBlock = (instance, engine) => {
 }
 
 export const blockPainter = (instance, engine) => {
+  //TODO: change block color
   const { status } = instance
   switch (status) {
     case constant.swing:

@@ -2,7 +2,7 @@ import { checkMoveDown, getMoveDownValue } from './utils'
 import * as constant from './constant'
 
 export const backgroundImg = (engine) => {
-  const bg = engine.getImg('background')
+  const bg = engine.getImg(engine.getVariable(constant.backgroundName))
   const bgWidth = bg.width
   const bgHeight = bg.height
   const zoomedHeight = (bgHeight * engine.width) / bgWidth
@@ -51,15 +51,44 @@ const getLinearGradientColorRgb = (colorArr, colorIndex, proportion) => {
 
 export const backgroundLinearGradient = (engine) => {
   const grad = engine.ctx.createLinearGradient(0, 0, 0, engine.height)
-  const colorArr = [
-    [200, 255, 150],
-    [105, 230, 240],
-    [90, 190, 240],
-    [85, 100, 190],
-    [55, 20, 35],
-    [75, 25, 35],
-    [25, 0, 10]
-  ]
+  let colorArr = []
+  switch(engine.getVariable(constant.backgroundName)) {
+    // gradient colors for backgrounds. First part of background name is color of the block
+    case 'background':
+       colorArr = [
+        [200, 255, 150],
+        [105, 230, 240],
+        [90, 190, 240],
+        [85, 100, 190],
+        [55, 20, 35],
+        [75, 25, 35],
+        [25, 0, 10]
+      ]
+      break
+    case 'greenbackground':
+      colorArr = [
+        [255, 255, 150],
+        [240, 230, 120],
+        [220, 200, 90],
+        [200, 170, 60],
+        [180, 140, 40],
+        [100, 50, 20],
+        [20, 0, 10]
+      ]
+      break
+    default:
+      colorArr = [
+        [184, 218, 217],
+        [140, 179, 184],
+        [115, 150, 145],
+        [90, 120, 105],
+        [70, 90, 75],
+        [55, 60, 50],
+        [25, 0, 10]
+      ]
+      break
+  }
+ 
   const offsetHeight = engine.getVariable(constant.bgLinearGradientOffset, 0)
   if (checkMoveDown(engine)) {
     engine.setVariable(
